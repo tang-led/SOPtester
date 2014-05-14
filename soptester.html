@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>SOP Tester</title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<iframe src="" style="height:100px" id="testcase-iframe"></iframe>
+<button id="btn-go">GO!</button>
+
+<script>
+document.querySelector('button').addEventListener('click', function(){
+	var testnodes = Array.prototype.slice.call(document.querySelectorAll('*[data-test]'));
+	function next_test(){
+		if (testnodes.length === 0){
+			alert("Finished!");
+		}
+		var node = testnodes.shift();
+		window.display_result = function(success, error){
+			if(success === true){
+				node.className='true';
+			}else {
+				node.className='false';
+			}
+			next_test();
+		}
+		document.querySelector('iframe').src = node.dataset.test;
+	};
+	next_test();	
+});
+
+/*document.getElementById('btn-go').onclick = function(){
+	var nodes = document.getElementsByClassName('testcase')
+	for (var i = 0; i < nodes.length; i++) {
+		document.getElementById('testcase-iframe').src = nodes[i].dataset.test;
+	}
+};*/
+</script>
+<!--HTML Output-->
+<table border=1>
+<tr>
+	<th>Testcase</th>
+	<th>Should work in:</th>
+	<th>Exception:</th>
+</tr>
+<tr data-test="tests/checkPort.html">
+	<td>Check Port</td>
+	<td>Chrome, FF</td>
+	<td></td>
+</tr>
+<tr data-test="tests/scriptFromDiffOrigin.html">
+	<td>Script inherits origin</td>
+	<td>not known</td>
+	<td></td>
+</tr>
+</table>
+</body>
+</html>

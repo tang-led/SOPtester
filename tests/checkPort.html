@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<iframe src="http://127.0.0.1:7777/tests/CrossOrigin/iframeDiffPort.html" style="height:100px"></iframe>
+
+<script>
+
+function checkPort(){
+	var port_check = '';
+	var exception = '';
+	try{
+		frames[0].frames[0].location.port;
+		port_check = true;
+	}catch(e) {
+		exception = 'Error: ' + e;
+		port_check = false;
+		console.log('Error:'+e);
+	}	
+	parent.display_result(port_check, exception);
+}
+</script>

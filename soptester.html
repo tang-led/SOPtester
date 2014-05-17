@@ -1,25 +1,37 @@
 <html>
 <head>
 <title>SOP Tester</title>
+<script>
+function debug_view(){
+	if (document.getElementById("check-debug").checked === true){
+		document.getElementById("testcase-iframe").style.display = 'block';
+	}
+}
+</script>
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="style.css" />
-<iframe src="" style="height:100px" id="testcase-iframe"></iframe>
+<iframe src="" id="testcase-iframe"></iframe>
 <button id="btn-go">GO!</button>
+<input type="checkbox" id="check-debug">DEBUG ON
 
 <script>
 document.querySelector('button').addEventListener('click', function(){
+	debug_view();
 	var testnodes = Array.prototype.slice.call(document.querySelectorAll('*[data-test]'));
 	function next_test(){
 		if (testnodes.length === 0){
 			alert("Finished!");
 		}
 		var node = testnodes.shift();
-		window.display_result = function(success, error){
+		window.display_result = function(success, exception){
 			if(success === true){
 				node.className='true';
 			}else {
 				node.className='false';
+				var exceptionCell = document.createElement('td');
+				exceptionCell = exceptionCell.appendChild(document.createTextNode(exception));
+				node.appendChild(exceptionCell);
 			}
 			next_test();
 		}
@@ -45,12 +57,14 @@ document.querySelector('button').addEventListener('click', function(){
 <tr data-test="tests/checkPort.html">
 	<td>Check Port</td>
 	<td>Chrome, FF</td>
-	<td></td>
 </tr>
-<tr data-test="tests/scriptFromDiffOrigin.html">
+<tr data-test="tests/scriptInheritOrigin.html">
 	<td>Script inherits origin</td>
 	<td>not known</td>
-	<td></td>
+</tr>
+<tr data-test="tests/cssInheritOrigin.html">
+	<td>CSS inherits origin</td>
+	<td>not known</td>
 </tr>
 </table>
 </body>

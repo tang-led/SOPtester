@@ -1,7 +1,13 @@
 .true {
-	background-color: green;
+	background-color: 	green;
 }
 
 .false {
-	background-color: red;
+	background-color: 	red;
+}
+
+#testcase-iframe {
+	display: 	none;
+	height: 	100px;
+	width: 		200px;
 }

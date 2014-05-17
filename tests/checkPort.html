@@ -3,18 +3,23 @@
 <iframe src="http://127.0.0.1:7777/tests/CrossOrigin/iframeDiffPort.html" style="height:100px"></iframe>
 
 <script>
-
 function checkPort(){
 	var port_check = '';
 	var exception = '';
 	try{
-		frames[0].frames[0].location.port;
-		port_check = true;
-	}catch(e) {
-		exception = 'Error: ' + e;
+		frames[0].location.port;
 		port_check = false;
-		console.log('Error:'+e);
+	}catch(e) {
+		if (e.code == DOMException.SECURITY_ERR){
+			exception = 'Error: ' + e;
+			port_check = true;
+			console.log('Error: '+e);
+		}
+		
 	}	
 	parent.display_result(port_check, exception);
 }
+</script>
+<script>
+parent.display_result(true, 'Uncaught SecurityError: Blocked a frame with different origin.');
 </script>

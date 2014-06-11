@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-
-<script> 
-var site_origin = window.location.origin;
-/*
-function checkOrigin(css_origin){
-	//check script_origin vs site_origin
-	var origin_check = (script_origin === site_origin);
-	parent.display_result(origin_check, "bla");
-}*/
-</script>
-
 <link rel="stylesheet" 
 	type="text/css" 
 	href="http://127.0.0.2:8000/tests/CrossOrigin/COcss.css" 
 	media="all">
+<script>
+onload = function(){
+	try{
+		var cssText = document.styleSheets[0].cssRules[0].cssText;
+		parent.display_result(false, cssText);
+		console.log(cssText)
+	}catch(e){
+		parent.display_result(true, "");
+	}
+}
+
+
+
+</script>
+
+
 

@@ -1,8 +1,8 @@
-.true {
+.true td:nth-child(2) {
 	background-color: 	green;
 }
 
-.false {
+.false td:nth-child(2) {
 	background-color: 	red;
 }
 

@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-
-<script> 
-var site_origin = window.location.origin;
-/*
-function checkOrigin(css_origin){
-	//check script_origin vs site_origin
-	var origin_check = (script_origin === site_origin);
-	parent.display_result(origin_check, "bla");
-}*/
-</script>
-
 <link rel="stylesheet" 
 	type="text/css" 
 	href="http://127.0.0.2:8000/tests/CrossOrigin/COcss.css" 
 	media="all">
 
-<script src="/CrossOrigin/COcss.js"></script>
+<script>
+window.onload = function(){
+	//compare setted background color with current background color
+	var site_background = window.getComputedStyle(document.body).getPropertyValue("background-color");
+	var origin_check = (site_background === "rgb(255, 255, 0)");
+	parent.display_result(origin_check, "bla");
+}
+</script>
+

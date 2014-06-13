@@ -2,29 +2,43 @@
 <head>
 <title>SOP Tester</title>
 <script>
-function debug_view(){
+/*function debug_view(){
 	if (document.getElementById("check-debug").checked === true){
 		document.getElementById("testcase-iframe").style.display = 'block';
 	}
-}
+}*/
 </script>
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="style.css" />
-<iframe src="" id="testcase-iframe"></iframe>
+<!-- <iframe src="" id="testcase-iframe"></iframe> -->
 <button id="btn-go">GO!</button>
-<input type="checkbox" id="check-debug">DEBUG ON
+<!-- <input type="checkbox" id="check-debug">DEBUG ON -->
 
 <script>
 document.querySelector('button').addEventListener('click', function(){
-	debug_view();
+	/*debug_view();*/
+	var windowObjectReference = null;
+	function openTestcasePopup(node){
+		console.log("bla");
+		if(windowObjectReference == null || windowObjectReference.closed){
+			console.log(node.dataset.test)
+			windowObjectReference = window.open(node.dataset.test, 'testcase-window', 'height=800, widht=600')
+		}else{
+			windowObjectReference.location = node.dataset.test; 
+		}
+	}
+
 	var testnodes = Array.prototype.slice.call(document.querySelectorAll('*[data-test]'));
 	function next_test(){
+		console.log("blubb");
 		if (testnodes.length === 0){
 			alert("Finished!");
 		}
 		var node = testnodes.shift();
+		console.log('lala');
 		window.display_result = function(success, exception){
+			console.log("blablubb");
 			if(success === true){
 				node.className='true';
 			}else {
@@ -35,7 +49,8 @@ document.querySelector('button').addEventListener('click', function(){
 			}
 			next_test();
 		}
-		document.querySelector('iframe').src = node.dataset.test;
+		openTestcasePopup(node);
+		/*document.querySelector('iframe').src = node.dataset.test;*/
 	};
 	next_test();	
 });

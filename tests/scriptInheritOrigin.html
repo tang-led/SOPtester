@@ -6,7 +6,7 @@ var site_origin = window.location.origin;
 function checkOrigin(script_origin){
 	//check script_origin vs site_origin
 	var origin_check = (script_origin === site_origin);
-	parent.display_result(origin_check, "bla");
+	window.opener.display_result(origin_check, "bla");
 }
 </script>
 

@@ -20,26 +20,22 @@ document.querySelector('button').addEventListener('click', function(){
 	/*debug_view();*/
 	var windowObjectReference = null;
 	function openTestcasePopup(node){
-		console.log("bla");
 		if(windowObjectReference == null || windowObjectReference.closed){
 			console.log(node.dataset.test)
-			windowObjectReference = window.open(node.dataset.test, 'testcase-window', 'height=800, widht=600')
+			windowObjectReference = window.open(node.dataset.test + '?' + Math.random(), 'testcase-window', 'height=800, widht=600');
 		}else{
-			windowObjectReference.location = node.dataset.test; 
+			windowObjectReference.location = node.dataset.test + '?' + Math.random(); 
 		}
 	}
 
 	var testnodes = Array.prototype.slice.call(document.querySelectorAll('*[data-test]'));
 	function next_test(){
-		console.log("blubb");
 		if (testnodes.length === 0){
 			alert("Finished!");
 		}
 		var node = testnodes.shift();
-		console.log('lala');
 		window.display_result = function(success, exception){
-			console.log("blablubb");
-			if(success === true){
+			if (success === true){
 				node.className='true';
 			}else {
 				node.className='false';
@@ -74,15 +70,15 @@ document.querySelector('button').addEventListener('click', function(){
 	<td>Check Port</td>
 	<td></td>
 </tr>
-<tr data-test="tests/scriptInheritOrigin.html">
+<tr data-test="scriptInheritOrigin.html">
 	<td>Script inherits origin</td>
 	<td></td>
 </tr>
-<tr data-test="tests/cssInheritOrigin.html">
+<tr data-test="cssInheritOrigin.html">
 	<td>CSS inherits origin</td>
 	<td></td>
 </tr>
-<tr data-test="tests/styleSheets0.html">
+<tr data-test="styleSheets0.html">
 	<td>CSS document.styleSheets[0].cssText</td>
 	<td></td>
 </tr>

@@ -7,10 +7,10 @@
 onload = function(){
 	try{
 		var cssText = document.styleSheets[0].cssRules[0].cssText;
-		parent.display_result(false, cssText);
+		window.opener.display_result(false, cssText);
 		console.log(cssText)
 	}catch(e){
-		parent.display_result(true, "");
+		window.opener.display_result(true, "");
 	}
 }
 

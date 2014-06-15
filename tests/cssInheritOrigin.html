@@ -9,7 +9,7 @@ window.onload = function(){
 	//compare setted background color with current background color
 	var site_background = window.getComputedStyle(document.body).getPropertyValue("background-color");
 	var origin_check = (site_background === "rgb(255, 255, 0)");
-	parent.display_result(origin_check, "bla");
+	window.opener.display_result(origin_check, "bla");
 }
 </script>
 

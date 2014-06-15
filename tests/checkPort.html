@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<iframe src="http://127.0.0.1:7777/tests/CrossOrigin/iframeDiffPort.html" style="height:100px"></iframe>
+<iframe src="http://127.0.0.1:7777/tests/CrossOrigin/iframeDiffPort.html" style="height:100%"></iframe>
 
 <script>
 function checkPort(){
@@ -13,13 +13,13 @@ function checkPort(){
 		if (e.code == DOMException.SECURITY_ERR){
 			exception = 'Error: ' + e;
 			port_check = true;
-			console.log('Error: '+e);
+			console.log('Error: ' + e);
 		}
 		
 	}	
-	parent.display_result(port_check, exception);
+	window.opener.display_result(port_check, exception);
 }
 </script>
 <script>
-parent.display_result(true, 'Uncaught SecurityError: Blocked a frame with different origin.');
+window.opener.display_result(true, 'Uncaught SecurityError: Blocked a frame with different origin.');
 </script>

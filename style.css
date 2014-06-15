@@ -1,13 +1,20 @@
+body {
+  	padding-top: 50px;
+}
+
+.starter-template {
+  	padding: 40px 15px;
+  	text-align: center;
+}
+
+/*#btn-go {
+	vertical-align: center;
+}*/
+
 .true td:nth-child(2) {
 	background-color: 	green;
 }
 
 .false td:nth-child(2) {
 	background-color: 	red;
-}
-
-#testcase-iframe {
-	display: 	none;
-	height: 	100px;
-	width: 		200px;
 }

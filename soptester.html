@@ -10,18 +10,51 @@
 </script>
 </head>
 <body>
+<!-- Bootstrap -->
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css" />
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+          	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            	<span class="sr-only">Toggle navigation</span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+          	</button>
+          	<a class="navbar-brand" href="#">SOPtester</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          	<ul class="nav navbar-nav">
+            	<li class="active"><a href="#">Home</a></li>
+            	<li><a href="#about">About</a></li>
+            	<li><a href="#contact">Contact</a></li>
+          	</ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+
 <!-- <iframe src="" id="testcase-iframe"></iframe> -->
-<button id="btn-go">GO!</button>
+<div class="jumbotron">
+    <div class="container">
+        <h1>SOPtester</h1>
+        <p>This is a testing environment checking browsers for SOP specification coincidence.</p>
+        <button type="button" id="btn-go" class="btn btn-sm btn-default">GO!</button>
+    </div>
+</div>
+
+
+
 <!-- <input type="checkbox" id="check-debug">DEBUG ON -->
 
 <script>
-document.querySelector('button').addEventListener('click', function(){
+document.querySelector('#btn-go').addEventListener('click', function(){
 	/*debug_view();*/
 	var windowObjectReference = null;
 	function openTestcasePopup(node){
 		if(windowObjectReference == null || windowObjectReference.closed){
-			console.log(node.dataset.test)
 			windowObjectReference = window.open(node.dataset.test + '?' + Math.random(), 'testcase-window', 'height=800, widht=600');
 		}else{
 			windowObjectReference.location = node.dataset.test + '?' + Math.random(); 
@@ -36,9 +69,9 @@ document.querySelector('button').addEventListener('click', function(){
 		var node = testnodes.shift();
 		window.display_result = function(success, exception){
 			if (success === true){
-				node.className='true';
+				node.className='success';
 			}else {
-				node.className='false';
+				node.className='danger';
 				var exceptionCell = document.createElement('td');
 				exceptionCell = exceptionCell.appendChild(document.createTextNode(exception));
 				node.appendChild(exceptionCell);
@@ -59,33 +92,70 @@ document.querySelector('button').addEventListener('click', function(){
 };*/
 </script>
 <!--HTML Output-->
-<table border=1>
-<tr>
-	<th>Testcase</th>
-	<th>Current Browser:</th>
-	<th>Specification:</th>
-	<th>Exception:</th>
-</tr>
-<tr data-test="tests/checkPort.html">
-	<td>Check Port</td>
-	<td></td>
-</tr>
-<tr data-test="scriptInheritOrigin.html">
-	<td>Script inherits origin</td>
-	<td></td>
-</tr>
-<tr data-test="cssInheritOrigin.html">
-	<td>CSS inherits origin</td>
-	<td></td>
-</tr>
-<tr data-test="styleSheets0.html">
-	<td>CSS document.styleSheets[0].cssText</td>
-	<td></td>
-</tr>
-<!-- <tr data-test="tests/">
-	<td></td>
-	<td>not known</td>
-</tr> -->
-</table>
+<div class="bs-example">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Testcase</th>
+		  <th>Current Browser</th>
+		  <th>Chrome</th>
+		  <th>Firefox</th>
+		  <th>Internet Explorer</th>
+		  <th>Opera</th>
+		  <th>Safari</th>
+		  <th>Specification</th>
+		  <th>Exception</th>
+        </tr>
+      </thead>
+      <tbody>
+		 <tr data-test="tests/checkPort.html">
+		 	<td>1</td>
+			<td>Check Port</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><a href='http://www.w3.org/Security/wiki/Same_Origin_Policy'>http://www.w3.org/Security/wiki/Same_Origin_Policy</a></td>
+		</tr>
+		<tr data-test="scriptInheritOrigin.html">
+			<td>2</td>
+			<td>Script inherits origin</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr data-test="cssInheritOrigin.html">
+			<td>3</td>
+			<td>CSS inherits origin</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr data-test="styleSheets0.html">
+			<td>4</td>
+			<td>CSS document.styleSheets[0].cssText</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+      </tbody>
+    </table>
+</div>
+
 </body>
 </html>

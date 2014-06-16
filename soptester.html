@@ -69,9 +69,9 @@ document.querySelector('#btn-go').addEventListener('click', function(){
 		var node = testnodes.shift();
 		window.display_result = function(success, exception){
 			if (success === true){
-				node.className='success';
+				node.className='true';
 			}else {
-				node.className='danger';
+				node.className='false';
 				var exceptionCell = document.createElement('td');
 				exceptionCell = exceptionCell.appendChild(document.createTextNode(exception));
 				node.appendChild(exceptionCell);

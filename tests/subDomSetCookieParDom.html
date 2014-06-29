@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<script> 
+var cookieValue = 'cookie_for_parents=I am a subdomain and can set a cookie on my parents site.';
+document.cookie = cookieValue + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+function checkCookieIsSet(){
+	//check if the cookie was set by the the child subdomain
+	if(document.cookie == cookieValue){
+		window.opener.display_result(true, "bla");
+		alert("true");
+	}else{
+		window.opener.display_result(false, "bla");
+		alert("false");
+	}
+}
+</script>
+
+<iframe src="http://sub.domainA.tld:8000/tests/CrossOrigin/setParentCookie.html" 
+		onload="checkCookieIsSet()"></iframe>
